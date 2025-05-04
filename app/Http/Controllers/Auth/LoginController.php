@@ -55,7 +55,7 @@ class LoginController extends Controller
 
             $user->save();
 
-            return back()->with('error', 'Su cuenta ha sido bloqueada. Si desea desbloquearla, haga clic en el botón "Desbloquear".');
+            return back()->with('error', 'Corrreo o contraseña incorrectos.');
         }
 
         $user->intentos = 0;

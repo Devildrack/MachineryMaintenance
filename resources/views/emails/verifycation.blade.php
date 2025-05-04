@@ -37,6 +37,11 @@
             line-height: 1.6;
         }
 
+        .content h2 {
+            text-align: center;
+            /* Centra solo el h2 */
+        }
+
         .button {
             display: inline-block;
             background-color: #007BFF;
@@ -60,6 +65,21 @@
             color: #007BFF;
             text-decoration: none;
         }
+
+        .line {
+            margin-top: 20px;
+            border-top: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+
+        .small-text {
+            font-size: 12px;
+            /* Reduce el tamaño del texto */
+            word-wrap: break-word;
+            /* Evita que el texto se salga del contenedor */
+            max-width: 100%;
+            /* Asegura que no se pase del contenedor */
+        }
     </style>
 </head>
 
@@ -70,18 +90,22 @@
         </div>
 
         <div class="content">
-            <h2>¡Gracias por registrarte en CATAB!</h2>
+            <h2>¡Gracias por registrarte en Nombre Empresa!</h2>
             <p>Hola {{ $user->name }},</p>
-            <p>Gracias por registrarte en CATAB. Estamos emocionados de tenerte con nosotros.</p>
+            <p>Gracias por registrarte en Nombre Empresa. Estamos emocionados de tenerte con nosotros.</p>
             <p>Para completar tu registro, por favor confirma tu dirección de correo electrónico haciendo clic en el
                 siguiente enlace:</p>
             <a href="{{ $verificationUrl }}" class="button">Verificar Correo</a>
             <p>Si no te has registrado en nuestro sitio, puedes ignorar este correo.</p>
+
+            <div class="line"></div>
+            <p class="small-text">Si tienes problemas al hacer clic en el botón "Verificar Correo Electrónico", copia y
+                pega la siguiente
+                URL en tu navegador web: <a href="{{ $verificationUrl }}">{{ $verificationUrl }}</a></p>
         </div>
 
         <div class="footer">
-            <p>Atentamente, el equipo de CATAB</p>
-            <p>Si tienes alguna pregunta, no dudes en <a href="mailto:soporte@tusitio.com">contactarnos</a>.</p>
+            <p>Atentamente, el equipo de Nombre Empresa</p>
         </div>
     </div>
 </body>

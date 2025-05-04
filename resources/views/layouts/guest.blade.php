@@ -30,7 +30,7 @@
             <div class="flex flex-col items-center text-center space-y-6 px-8 z-10">
                 <h1 class="text-white font-bold text-4xl font-sans">Nombre Empresa</h1>
                 <h1 class="text-white font-bold text-4xl font-sans">Logo</h1>
-                <p class="text-white text-lg">Objetivo</p>
+                {{-- <p class="text-white text-lg">Objetivo</p> --}}
             </div>
         </div>
 
