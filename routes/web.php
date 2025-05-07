@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\UnlockAccountController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,11 @@ Route::post('/register', [RegisteredUserController::class, 'store']);
 Route::get('/verify-email/{id}/{hash}', [EmailVerificationController::class, 'verify'])
     ->name('verification.verify')
     ->middleware('signed');
+
+
+Route::get('/unlock-account', [UnlockAccountController::class, 'index'])->name('unlock.form');
+Route::post('/unlock-account/send', [UnlockAccountController::class, 'sendUnlockLink'])->name('unlock.send');
+Route::get('/unlock-account/verify/{id}/{hash}', [UnlockAccountController::class, 'verifyUnlock'])->name('unlock.verify');
 
 Route::middleware([
     'auth:sanctum',

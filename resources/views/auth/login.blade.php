@@ -33,7 +33,7 @@
             <button type="submit"
                 class="block w-full bg-indigo-600 mt-5 py-2 rounded-2xl hover:bg-indigo-700 hover:-translate-y-1 transition-all duration-500 text-white font-semibold mb-2">Iniciar
                 Sesion</button>
-            <a href="{{ route('password.request') }}"
+            <a href="{{ route('unlock.form') }}"
                 class="block w-full text-center bg-indigo-600 mt-5 py-2 rounded-2xl hover:bg-indigo-700 hover:-translate-y-1 transition-all duration-500 text-white font-semibold mb-2">
                 Desbloquear Cuenta
             </a>
