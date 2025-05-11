@@ -5,6 +5,8 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\UnlockAccountController;
+use App\Http\Controllers\Auth\PasswordResetLinkController;
+use App\Http\Controllers\Auth\ResetPasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +32,10 @@ Route::get('/verify-email/{id}/{hash}', [EmailVerificationController::class, 've
     ->name('verification.verify')
     ->middleware('signed');
 
-
+Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])->name('password.request');
+Route::post('/forgot-password', [PasswordResetLinkController::class, 'store'])->name('password.email');
+Route::get('reset-password/{token}', [ResetPasswordController::class, 'index'])->name('password.reset');
+Route::post('reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');
 Route::get('/unlock-account', [UnlockAccountController::class, 'index'])->name('unlock.form');
 Route::post('/unlock-account/send', [UnlockAccountController::class, 'sendUnlockLink'])->name('unlock.send');
 Route::get('/unlock-account/verify/{id}/{hash}', [UnlockAccountController::class, 'verifyUnlock'])->name('unlock.verify');
