@@ -41,7 +41,7 @@ class LoginController extends Controller
 
         // Verificar si el estatus es 0 (baja)
         if ($user->estatus == 0) {
-            return back()->with('error', 'Este usuario ha sido dado de baja. No puede iniciar sesión.');
+            return back()->with('error', 'Este usuario se encuentra inactivo. Por favor contacte a su Administrador.');
         }
 
         // Verificar si el password es correcto
@@ -60,6 +60,10 @@ class LoginController extends Controller
 
         $user->intentos = 0;
         $user->save();
+
+        if ($user->roles->isEmpty()) {
+            return back()->with('error', 'Este usuario no tiene un rol asignado. Contacte a su Administrador.');
+        }
 
         Auth::login($user, $request->filled('remember'));
 

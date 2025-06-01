@@ -7,6 +7,10 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\UnlockAccountController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\TipoMaquinariaEquipoController;
+use App\Http\Controllers\MaquinariaEquipoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,4 +52,8 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+    Route::resource('usuarios', UserController::class)->only(['index', 'store', 'update']);
+    Route::resource('roles', RoleController::class)->only(['index', 'store', 'update', 'destroy']);
+    Route::resource('tipomaquinarias', TipoMaquinariaEquipoController::class)->only(['index', 'store', 'update', 'destroy']);
+    Route::resource('maquinarias', MaquinariaEquipoController::class)->only(['index','store','update','destroy']);
 });
