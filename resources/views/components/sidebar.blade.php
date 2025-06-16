@@ -81,6 +81,24 @@
                     </a>
                 </li>
             @endcan
+            @can('listar frentes de trabajo')
+                <li>
+                    <a href="{{ route('frentesTrabajo.index') }}"
+                        class="group flex items-center px-4 py-3 text-base font-medium transition-colors duration-200 rounded-md
+                           text-indigo-500 hover:text-indigo-600 hover:bg-indigo-100"
+                        :class="{
+                            'justify-center': !(sidebarOpen || sidebarHovered),
+                            'justify-start': (sidebarOpen || sidebarHovered),
+                            'bg-indigo-100 text-indigo-600': window.location
+                                .pathname === '{{ route('frentesTrabajo.index', [], false) }}'
+                        }">
+                        <i
+                            class="fa-solid fa-hard-hat text-xl group-hover:text-indigo-600 transition-colors duration-200"></i>
+                        <span x-show="sidebarOpen || sidebarHovered" class="ml-4 group-hover:text-indigo-600">Frentes de
+                            Trabajo</span>
+                    </a>
+                </li>
+            @endcan
             @can('listar maquinaria')
                 <li>
                     <a href="{{ route('maquinarias.index') }}"
@@ -96,6 +114,24 @@
                             class="fa-solid fa-tractor text-xl group-hover:text-indigo-600 transition-colors duration-200"></i>
                         <span x-show="sidebarOpen || sidebarHovered" class="ml-4 group-hover:text-indigo-600">Maquinarias y
                             Equipos</span>
+                    </a>
+                </li>
+            @endcan
+            @can('listar productos')
+                <li>
+                    <a href="{{ route('productos.index') }}"
+                        class="group flex items-center px-4 py-3 text-base font-medium transition-colors duration-200 rounded-md
+                           text-indigo-500 hover:text-indigo-600 hover:bg-indigo-100"
+                        :class="{
+                            'justify-center': !(sidebarOpen || sidebarHovered),
+                            'justify-start': (sidebarOpen || sidebarHovered),
+                            'bg-indigo-100 text-indigo-600': window.location
+                                .pathname === '{{ route('productos.index', [], false) }}'
+                        }">
+                        <i
+                            class="fa-solid fa-boxes-stacked text-xl group-hover:text-indigo-600 transition-colors duration-200"></i>
+                        <span x-show="sidebarOpen || sidebarHovered"
+                            class="ml-4 group-hover:text-indigo-600">Productos</span>
                     </a>
                 </li>
             @endcan

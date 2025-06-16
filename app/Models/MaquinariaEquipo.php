@@ -15,7 +15,7 @@ class MaquinariaEquipo extends Model
         'marca',
         'numero_serie',
         'propietario',
-        'frente_trabajo',
+        'frente_trabajo_id',
         'fecha_alta',
         'tipo_combustible',
         'fecha_ultimo_servicio',
@@ -27,5 +27,10 @@ class MaquinariaEquipo extends Model
     public function tipo()
     {
         return $this->belongsTo(TipoMaquinariaEquipo::class, 'tipo_maquinaria_equipo_id');
+    }
+
+    public function frenteTrabajo()
+    {
+        return $this->belongsTo(FrenteTrabajo::class, 'frente_trabajo_id');
     }
 }

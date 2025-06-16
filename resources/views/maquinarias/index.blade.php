@@ -47,13 +47,37 @@
                                         <td class="px-2 py-1">{{ $maquinaria->marca }}</td>
                                         <td class="px-2 py-1">{{ $maquinaria->numero_serie }}</td>
                                         <td class="px-2 py-1">{{ $maquinaria->propietario }}</td>
-                                        <td class="px-2 py-1">{{ $maquinaria->frente_trabajo }}</td>
+                                        <td class="px-2 py-1">{{ $maquinaria->frenteTrabajo->descripcion }}</td>
                                         <td class="px-2 py-1">{{ $maquinaria->fecha_alta }}</td>
                                         <td class="px-2 py-1">{{ $maquinaria->tipo_combustible }}</td>
                                         <td class="px-2 py-1">{{ $maquinaria->fecha_ultimo_servicio }}</td>
                                         <td class="px-2 py-1">{{ $maquinaria->horometro_ultimo_servicio }}</td>
-                                        <td class="px-2 py-1">{{ $maquinaria->condicion }}</td>
-                                        <td class="px-2 py-1">{{ $maquinaria->estatus }}</td>
+                                        <td class="px-2 py-1">
+                                            @if ($maquinaria->condicion == 'En Operación')
+                                                <span
+                                                    class="inline-block px-2 py-1 text-sm font-normal rounded-full text-emerald-500 bg-emerald-100/60">
+                                                    Operación
+                                                </span>
+                                            @elseif ($maquinaria->condicion == 'Mantenimiento')
+                                                <span
+                                                    class="inline-block px-2 py-1 text-sm font-normal rounded-full text-yellow-500 bg-yellow-100/60">
+                                                    Mantenimiento
+                                                </span>
+                                            @endif
+                                        </td>
+                                        <td class="px-2 py-1">
+                                            @if ($maquinaria->estatus == 'Activo')
+                                                <span
+                                                    class="inline-block px-2 py-1 text-sm font-normal rounded-full text-emerald-500 bg-emerald-100/60">
+                                                    Activo
+                                                </span>
+                                            @elseif ($maquinaria->estatus == 'Inactivo')
+                                                <span
+                                                    class="inline-block px-2 py-1 text-sm font-normal rounded-full text-red-500 bg-red-100/60">
+                                                    Inactivo
+                                                </span>
+                                            @endif
+                                        </td>
                                         <td class="px-2 py-1">
                                             <div class="flex justify-end space-x-2">
                                                 <div x-data="{ editOpen: false }" class="inline-block">

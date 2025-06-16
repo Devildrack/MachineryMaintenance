@@ -17,14 +17,27 @@
             <!-- Permisos agrupados por módulo -->
             <div class="mb-4">
                 <label class="block font-medium mb-2">Permisos</label>
-                @php
+                {{--  @php
                     // Agrupar permisos por módulo (última palabra del permiso)
                     $modules = collect($permissions)->groupBy(function ($perm) {
                         $words = explode(' ', $perm->name);
                         return ucfirst(array_pop($words)); // Ejemplo: 'usuarios' => 'Usuarios'
                     });
+                @endphp --}}
+                @php
+                    $modules = collect($permissions)->groupBy(function ($perm) {
+                        $name = strtolower($perm->name);
+
+                        if (str_contains($name, 'tipo maquinaria')) {
+                            return 'Tipo Maquinaria';
+                        }
+
+                        // Lógica por defecto: última palabra
+                        $words = explode(' ', $perm->name);
+                        return ucfirst(array_pop($words));
+                    });
                 @endphp
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
                     @foreach ($modules as $module => $perms)
                         <div class="bg-gray-100 rounded-lg p-4 shadow-sm">
                             <h3 class="font-semibold text-gray-800 mb-3 capitalize border-b pb-1">

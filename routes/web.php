@@ -10,7 +10,9 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TipoMaquinariaEquipoController;
+use App\Http\Controllers\FrenteTrabajoController;
 use App\Http\Controllers\MaquinariaEquipoController;
+use App\Http\Controllers\ProductoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,5 +57,7 @@ Route::middleware([
     Route::resource('usuarios', UserController::class)->only(['index', 'store', 'update']);
     Route::resource('roles', RoleController::class)->only(['index', 'store', 'update', 'destroy']);
     Route::resource('tipomaquinarias', TipoMaquinariaEquipoController::class)->only(['index', 'store', 'update', 'destroy']);
+    Route::resource('frentesTrabajo', FrenteTrabajoController::class)->only(['index', 'store', 'update', 'destroy']);
     Route::resource('maquinarias', MaquinariaEquipoController::class)->only(['index','store','update','destroy']);
+    Route::resource('productos', ProductoController::class)->only(['index','store','update','destroy']);
 });

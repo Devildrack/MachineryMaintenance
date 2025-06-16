@@ -45,19 +45,27 @@ class RolesAndPermissionsSeeder extends Seeder
             'eliminar tipo maquinaria',
         ];
 
-        /* foreach (array_unique(array_merge($permisosAdmin, $permisosRoles)) as $permiso) {
-            Permission::firstOrCreate(['name' => $permiso]);
-        }
+        $permisosFrenteTrabajo = [
+            'listar frentes de trabajo',
+            'agregar frentes de trabajo',
+            'editar frentes de trabajo',
+            'eliminar frentes de trabajo',
+        ];
 
-        $admin = Role::firstOrCreate(['name' => 'admin']);
+        $permisosProductos = [
+            'listar productos',
+            'agregar productos',
+            'editar productos',
+            'eliminar productos',
+        ];
 
-        $admin->syncPermissions($permisosAdmin, $permisosRoles); */
-        // Unificamos todos los permisos
         $todosLosPermisos = array_unique(array_merge(
             $permisosAdmin,
             $permisosRoles,
             $permisosMaquinariaEquipo,
-            $permisosTipoMaquinaria
+            $permisosTipoMaquinaria,
+            $permisosFrenteTrabajo,
+            $permisosProductos,
         ));
 
         // Creamos los permisos si no existen

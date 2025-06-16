@@ -69,8 +69,17 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                 <div>
                     <label class="block font-medium">Frente de Trabajo</label>
-                    <input type="text" name="frente_trabajo" value="{{ old('frente_trabajo') }}"
-                        class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full">
+                    <select name="frente_trabajo_id"
+                        class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full"
+                        required>
+                        <option value="">-- Selecciona --</option>
+                        @foreach ($frenteTrabajos as $frente)
+                            <option value="{{ $frente->id }}">{{ $frente->descripcion }}</option>
+                        @endforeach
+                    </select>
+                    @error('frente_trabajo_id')
+                        <span class="text-red-600 text-sm">{{ $message }}</span>
+                    @enderror
                 </div>
 
                 <div>

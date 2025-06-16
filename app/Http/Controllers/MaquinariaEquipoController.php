@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\MaquinariaEquipo;
 use App\Models\TipoMaquinariaEquipo;
+use App\Models\FrenteTrabajo;
 use Illuminate\Http\Request;
 
 class MaquinariaEquipoController extends Controller
@@ -12,11 +13,19 @@ class MaquinariaEquipoController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function __construct()
+    {
+        $this->middleware('can:listar maquinaria')->only(['index']);
+        $this->middleware('can:agregar maquinaria')->only(['store']);
+        $this->middleware('can:editar maquinaria')->only(['update']);
+        $this->middleware('can:eliminar maquinaria')->only(['destroy']);
+    }
     public function index()
     {
-        $maquinarias = MaquinariaEquipo::with('tipo')->paginate(10);
+        $maquinarias = MaquinariaEquipo::with('tipo', 'frenteTrabajo')->paginate(10);
         $tipomaquinarias = TipoMaquinariaEquipo::all();
-        return view('maquinarias.index', compact('maquinarias', 'tipomaquinarias'));
+        $frenteTrabajos = FrenteTrabajo::all();
+        return view('maquinarias.index', compact('maquinarias', 'tipomaquinarias', 'frenteTrabajos'));
     }
 
     /**
@@ -39,7 +48,7 @@ class MaquinariaEquipoController extends Controller
             'marca' => 'nullable|string|max:100',
             'numero_serie' => 'nullable|string|max:100',
             'propietario' => 'nullable|string|max:100',
-            'frente_trabajo' => 'nullable|string|max:100',
+            'frente_trabajo_id' => 'nullable|exists:frente_trabajos,id',
             'fecha_alta' => 'nullable|date',
             'tipo_combustible' => 'nullable|string|max:50',
             'fecha_ultimo_servicio' => 'nullable|date',
@@ -81,7 +90,7 @@ class MaquinariaEquipoController extends Controller
             'marca' => 'nullable|string|max:100',
             'numero_serie' => 'nullable|string|max:100',
             'propietario' => 'nullable|string|max:100',
-            'frente_trabajo' => 'nullable|string|max:100',
+            'frente_trabajo_id' => 'nullable|exists:frente_trabajos,id',
             'fecha_alta' => 'nullable|date',
             'tipo_combustible' => 'nullable|string|max:50',
             'fecha_ultimo_servicio' => 'nullable|date',
