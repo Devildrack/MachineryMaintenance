@@ -20,11 +20,18 @@
                 </div>
 
                 <div>
-                    <label class="block font-medium">Unidades</label>
-                    <input type="number" name="unidad" value="{{ old('unidad') }}"
-                        class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full"
-                        required>
-                    @error('unidad')
+                    <label class="block font-medium">Unidad de Medida</label>
+                    <select name="unidad_medida_id" required
+                        class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full">
+                        <option value="">Seleccionar Unidad de Medida</option>
+                        @foreach ($unidadMedidas as $unidad)
+                            <option value="{{ $unidad->id }}"
+                                {{ old('unidad_medida_id') == $unidad->id ? 'selected' : '' }}>
+                                {{ $unidad->descripcion }}
+                            </option>
+                        @endforeach
+                    </select>
+                    @error('unidad_medida_id')
                         <span class="text-red-600 text-sm">{{ $message }}</span>
                     @enderror
                 </div>
@@ -74,6 +81,22 @@
                         <span class="text-red-600 text-sm">{{ $message }}</span>
                     @enderror
                 </div>
+            </div>
+            <!-- Familia -->
+            <div class="mt-4">
+                <label class="block font-medium">Familia</label>
+                <select name="familia_id" required
+                    class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full">
+                    <option value="">Seleccionar Familia</option>
+                    @foreach ($familias as $familia)
+                        <option value="{{ $familia->id }}" {{ old('familia_id') == $familia->id ? 'selected' : '' }}>
+                            {{ $familia->descripcion }}
+                        </option>
+                    @endforeach
+                </select>
+                @error('familia_id')
+                    <span class="text-red-600 text-sm">{{ $message }}</span>
+                @enderror
             </div>
 
             <!-- Botones -->

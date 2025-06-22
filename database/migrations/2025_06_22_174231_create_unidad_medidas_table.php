@@ -11,14 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('productos', function (Blueprint $table) {
+        Schema::create('unidad_medidas', function (Blueprint $table) {
             $table->id();
             $table->string('descripcion');
-            $table->unsignedBigInteger('unidad');
-            $table->decimal('precio', 10, 2)->default(0.00);
-            $table->unsignedBigInteger('stock_minimo')->default(0);
-            $table->unsignedBigInteger('existencia')->default(0);
-            $table->unsignedBigInteger('cantidad_pedida')->default(0);
             $table->timestamps();
         });
     }
@@ -28,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('productos');
+        Schema::dropIfExists('unidad_medidas');
     }
 };

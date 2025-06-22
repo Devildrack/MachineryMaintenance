@@ -117,6 +117,42 @@
                     </a>
                 </li>
             @endcan
+            @can('listar unidad de medidas')
+                <li>
+                    <a href="{{ route('unidadMedidas.index') }}"
+                        class="group flex items-center px-4 py-3 text-base font-medium transition-colors duration-200 rounded-md
+                           text-indigo-500 hover:text-indigo-600 hover:bg-indigo-100"
+                        :class="{
+                            'justify-center': !(sidebarOpen || sidebarHovered),
+                            'justify-start': (sidebarOpen || sidebarHovered),
+                            'bg-indigo-100 text-indigo-600': window.location
+                                .pathname === '{{ route('unidadMedidas.index', [], false) }}'
+                        }">
+                        <i
+                            class="fa-solid fa-ruler text-xl group-hover:text-indigo-600 transition-colors duration-200"></i>
+                        <span x-show="sidebarOpen || sidebarHovered"
+                            class="ml-4 group-hover:text-indigo-600">Unidades de Medida</span>
+                    </a>
+                </li>
+            @endcan
+            @can('listar familias')
+                <li>
+                    <a href="{{ route('familias.index') }}"
+                        class="group flex items-center px-4 py-3 text-base font-medium transition-colors duration-200 rounded-md
+                           text-indigo-500 hover:text-indigo-600 hover:bg-indigo-100"
+                        :class="{
+                            'justify-center': !(sidebarOpen || sidebarHovered),
+                            'justify-start': (sidebarOpen || sidebarHovered),
+                            'bg-indigo-100 text-indigo-600': window.location
+                                .pathname === '{{ route('familias.index', [], false) }}'
+                        }">
+                        <i
+                            class="fa-solid fa-users text-xl group-hover:text-indigo-600 transition-colors duration-200"></i>
+                        <span x-show="sidebarOpen || sidebarHovered"
+                            class="ml-4 group-hover:text-indigo-600">Familias</span>
+                    </a>
+                </li>
+            @endcan
             @can('listar productos')
                 <li>
                     <a href="{{ route('productos.index') }}"

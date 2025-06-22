@@ -52,6 +52,20 @@ class RolesAndPermissionsSeeder extends Seeder
             'eliminar frentes de trabajo',
         ];
 
+        $permisosUnidadMedidas = [
+            'listar unidad de medidas',
+            'agregar unidad de medidas',
+            'editar unidad de medidas',
+            'eliminar unidad de medidas',
+        ];
+
+        $permisosFamilias = [
+            'listar familias',
+            'agregar familias',
+            'editar familias',
+            'eliminar familias',
+        ];
+
         $permisosProductos = [
             'listar productos',
             'agregar productos',
@@ -65,6 +79,8 @@ class RolesAndPermissionsSeeder extends Seeder
             $permisosMaquinariaEquipo,
             $permisosTipoMaquinaria,
             $permisosFrenteTrabajo,
+            $permisosUnidadMedidas,
+            $permisosFamilias,
             $permisosProductos,
         ));
 

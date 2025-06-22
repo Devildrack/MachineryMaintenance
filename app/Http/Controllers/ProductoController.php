@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Producto;
 use Illuminate\Http\Request;
+use App\Models\Familia;
+use App\Models\UnidadMedida;
 
 class ProductoController extends Controller
 {
@@ -20,7 +22,9 @@ class ProductoController extends Controller
     public function index()
     {
         $productos = Producto::paginate(10);
-        return view('productos.index', compact('productos'));
+        $familias = Familia::all();
+        $unidadMedidas = UnidadMedida::all();
+        return view('productos.index', compact('productos', 'familias', 'unidadMedidas'));
     }
 
     /**
@@ -38,7 +42,8 @@ class ProductoController extends Controller
     {
         $validated = $request->validate([
             'descripcion' => 'required|string|max:255',
-            'unidad' => 'required|string|max:50',
+            'unidad_medida_id' => 'required|exists:unidad_medidas,id',
+            'familia_id' => 'required|exists:familias,id',
             'precio' => 'required|numeric|min:0',
             'stock_minimo' => 'required|integer|min:0',
             'existencia' => 'required|integer|min:0',
@@ -73,7 +78,8 @@ class ProductoController extends Controller
     {
         $validated = $request->validate([
             'descripcion' => 'required|string|max:255',
-            'unidad' => 'required|string|max:50',
+            'unidad_medida_id' => 'required|exists:unidad_medidas,id',
+            'familia_id' => 'required|exists:familias,id',
             'precio' => 'required|numeric|min:0',
             'stock_minimo' => 'required|integer|min:0',
             'existencia' => 'required|integer|min:0',

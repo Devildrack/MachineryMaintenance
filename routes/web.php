@@ -12,6 +12,8 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TipoMaquinariaEquipoController;
 use App\Http\Controllers\FrenteTrabajoController;
 use App\Http\Controllers\MaquinariaEquipoController;
+use App\Http\Controllers\UnidadMedidaController;
+Use App\Http\Controllers\FamiliaController;
 use App\Http\Controllers\ProductoController;
 
 /*
@@ -59,5 +61,7 @@ Route::middleware([
     Route::resource('tipomaquinarias', TipoMaquinariaEquipoController::class)->only(['index', 'store', 'update', 'destroy']);
     Route::resource('frentesTrabajo', FrenteTrabajoController::class)->only(['index', 'store', 'update', 'destroy']);
     Route::resource('maquinarias', MaquinariaEquipoController::class)->only(['index','store','update','destroy']);
+    Route::resource('unidadMedidas', UnidadMedidaController::class)->only(['index','store','update','destroy']);
+    Route::resource('familias', FamiliaController::class)->only(['index','store','update','destroy']);
     Route::resource('productos', ProductoController::class)->only(['index','store','update','destroy']);
 });
